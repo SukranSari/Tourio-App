@@ -28,4 +28,13 @@ export default async function handler(request, response) {
       response.status(400).json({ error: error.message });
     }
   }
+
+  if (request.method === "DELETE") {
+    try {
+      await Place.findByIdAndDelete(id);
+      response.status(200).json({ message: "Deleted Successfully!" });
+    } catch (error) {
+      response.status(400).json({ error: error.message });
+    }
+  }
 }
